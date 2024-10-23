@@ -59,6 +59,7 @@ const Login = async (req, res) => {
         industry: enterpriseDetails.industry,
         no_of_employees: enterpriseDetails.no_of_employees,
         adminID: enterpriseDetails.admin_id,
+        enterpriseId: enterpriseDetails.enterprise_id
       },
       userDetails: {
         user_id: userData.user_id,

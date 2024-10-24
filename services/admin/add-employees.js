@@ -33,7 +33,7 @@ const addEmployees = async (req, res) => {
         email: validatedEmail,
         password: encryptedPassword,
         role:"employee",
-        
+        isActive:true
       })
       .select();  // Use select() to return the inserted row
 

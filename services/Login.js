@@ -7,6 +7,8 @@ const JWT_SECRET = "testSecret"; // Replace with your actual secret key
 const Login = async (req, res) => {
   try {
     const { email, password } = req.body;
+    console.log("This is the email: ", req.body.email);
+    console.log("This is the password: ", req.body.password);
 
     // Supabase query to get user details
     const { data: userData, error: userDataError } = await supabase
@@ -59,7 +61,7 @@ const Login = async (req, res) => {
         industry: enterpriseDetails.industry,
         no_of_employees: enterpriseDetails.no_of_employees,
         adminID: enterpriseDetails.admin_id,
-        enterpriseId: enterpriseDetails.enterprise_id
+        enterpriseId: enterpriseDetails.enterprise_id,
       },
       userDetails: {
         user_id: userData.user_id,
@@ -76,7 +78,15 @@ const Login = async (req, res) => {
     };
 
     // Set token expiration (e.g., 1 hour)
-    const token = jwt.sign(payload, JWT_SECRET, { expiresIn: '30d' });
+    const token = jwt.sign(payload, JWT_SECRET, { expiresIn: "30d" });
+
+    if ((userData.role = "super_admin")) {
+      return res.status(200).json({
+        message: "Login successful",
+        userToken: token,
+        isSuperAdmin: 1,
+      });
+    }
 
     // Send the JWT token as a response
     return res.status(200).json({

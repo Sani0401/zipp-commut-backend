@@ -2,7 +2,7 @@ import supabase from "../config/supabaseConfig.js";
 import helper from "../exports/Helpers.js";
 import jwt from "jsonwebtoken";
 
-const JWT_SECRET = "testSecret"; // Replace with your actual secret key
+const JWT_SECRET = process.env.JWT_SECRET; // Replace with your actual secret key
 
 const Login = async (req, res) => {
   try {

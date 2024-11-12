@@ -1,7 +1,8 @@
 import supabase from "../config/supabaseConfig.js";
 import helper from "../exports/Helpers.js";
 import jwt from "jsonwebtoken";
-
+import dotenv from 'dotenv'
+dotenv.config();
 const JWT_SECRET = process.env.JWT_SECRET; // Replace with your actual secret key
 
 const Login = async (req, res) => {

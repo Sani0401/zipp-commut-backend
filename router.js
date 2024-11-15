@@ -16,5 +16,6 @@ router.get("/api/v1/admin/get-roaster",Services.getRoaster)
 
 router.get("/api/v1/superadmin/get-enterprises",middlewares.verifySuperAdmin,superAdminServices.getEnterprises)
 router.post("/api/v1/superadmin/get-enterprise",middlewares.verifySuperAdmin,superAdminServices.getEnterpriseDetails)
+router.get("/api/v1/superadmin/get-enterprise-roaster", middlewares.verifySuperAdmin,superAdminServices.getEnterpriseRoaster )
 
 export default router;

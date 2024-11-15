@@ -1,7 +1,7 @@
 import supabase from "../config/supabaseConfig.js";
 import helper from "../exports/Helpers.js";
 import jwt from "jsonwebtoken";
-import dotenv from 'dotenv'
+import dotenv from "dotenv";
 dotenv.config();
 const JWT_SECRET = process.env.JWT_SECRET; // Replace with your actual secret key
 
@@ -36,6 +36,7 @@ const Login = async (req, res) => {
         .status(400)
         .json({ message: "Authentication Failed, check Email or Password" });
     }
+    console.log("This is the user data: ", userData);
 
     // Supabase query to get enterprise details using userId
     const { data: enterpriseDetails, error: enterpriseError } = await supabase
@@ -81,7 +82,7 @@ const Login = async (req, res) => {
     // Set token expiration (e.g., 1 hour)
     const token = jwt.sign(payload, JWT_SECRET, { expiresIn: "30d" });
 
-    if ((userData.role = "super_admin")) {
+    if ((userData.role == "super_admin")) {
       return res.status(200).json({
         message: "Login successful",
         userToken: token,

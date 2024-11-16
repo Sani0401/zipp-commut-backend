@@ -9,7 +9,7 @@ const createRoaster = async (req, res) => {
     const roasterId = uuidv4();
     // Loop through each employee email
     for (const employee of employeeDetails) {
-      const email = employee.name;
+      const email = employee.email;
 
       // Step 1: Retrieve userId from user_details table
       const { data: user, error: userError } = await supabase
